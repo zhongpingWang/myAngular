@@ -1,0 +1,8 @@
+
+<div ng-show="data.isLoading==true">加载中</div>
+
+<ul class="example-animate-container">
+<li ng-repeat="item in data.tasks | filter:q"  class="animate-repeat">
+     {{item.name}} <span class="del" ng-click="data.remove(this)">X</span>
+</li>
+</ul>

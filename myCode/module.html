@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hello">
+<head>
+	<meta charset="UTF-8">
+	<title>angular</title>
+	<script type="text/javascript" src="./angular.js"></script>
+</head>
+<body>
+	
+	<div ng-controller="HelloCtrl">
+			{{name}}
+	</div> 
+	 
+	<script type="text/javascript">
+
+		// angular.module('hello', [])
+		// .controller('HelloCtrl', function($scope){
+		// 	$scope.name = 'World';
+		// });
+		// 
+		var hello=angular.module('hello', []);
+
+		hello.controller('HelloCtrl', function($scope){
+			$scope.name = 'World';
+		});
+
+		var NotificationsArchive=function(){
+			this.name="sys";
+		}
+
+		var NotificationsService = function (notificationsArchive) {
+			this.notificationsArchive = notificationsArchive;
+		};
+
+		hello.value('notificationsArchive', new NotificationsArchive());
+		hello.service('notificationsService2', NotificationsArchive);
+		hello.service('notificationsService3', NotificationsService);
+
+		hello.factory('notificationsService4', function(notificationsArchive){
+			var MAX_LEN = 10;
+			var notifications = [];
+			return{
+				push: function (notification) {
+					var notificationToArchive;
+					var newLen = notifications.unshift(notification);
+					//push方法现在可以依靠闭包(closure)作用域了
+					if (newLen > MAX_LEN) {
+						notificationToArchive = this.notifications.pop();
+						notificationsArchive.archive(notificationToArchive);
+					}
+				}
+			// NotificationsService的其他方法
+			}
+		});
+	</script>
+
+
+</body>
+</html>

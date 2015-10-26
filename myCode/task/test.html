@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>angrl</title>
+</head>
+<body ng-app="myApp">
+  <h1>Hello Plunker!</h1>
+  <input type="text" ng-model="name" />
+  <div ng-controller="FirstCtrl">
+    {{data.name}}
+    <button ng-click="setName()">name jack</button>
+  </div>
+  <div ng-controller="SecondCtrl">
+    {{data.name}}
+    <button ng-click="setName()">name moby</button>
+  </div>
+</body>
+
+<script type="text/javascript" src="./angular/angular.js"></script>
+<script type="text/javascript" src="./angular/angular-animate.js"></script>
+<script type="text/javascript" src="./angular/angular-resource.js"></script>
+<script type="text/javascript" src="./angular/angular-route.js"></script>
+<script type="text/javascript" src="./angular/jquery.js"></script>
+
+
+<script type="text/javascript">
+	var myApp = angular.module("myApp", []);
+myApp.factory('Data', function() {
+  return {
+    name: "Ting"
+  }
+});
+
+myApp.controller('FirstCtrl', function($scope, Data) {
+  $scope.data = Data;
+
+  $scope.setName = function() {
+    Data.name = "Jack";
+  }
+
+  $scope.$watch("Data.name",function(){
+  	console.log(Data);
+  });
+
+
+});
+
+myApp.controller('SecondCtrl', function($scope, Data) {
+  $scope.data = Data;
+  
+  $scope.setName = function() {
+    Data.name = "Moby";
+  }
+});
+
+
+</script>
+
+</html>

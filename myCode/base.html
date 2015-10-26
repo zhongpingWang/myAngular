@@ -1,0 +1,76 @@
+<!doctype html>
+<html ng-app>
+    <head>
+        <script src="./angular.js"></script>
+    </head>
+    <body>
+        Hello {{'World'}}!
+		<br/>
+		  Your name: <input type="text" ng-model="yourname" placeholder="World">
+		  <input type="text" {{yourname}} placeholder="World">
+        <hr>
+        Hello {{yourname || 'World'}}!
+        <br/>
+
+    <ul ng-controller="PhoneListCtrl">
+        <li ng-repeat="phone in phones">
+          {{phone.name}}
+          <p>{{phone.snippet}}</p>
+        </li>
+    </ul>
+
+<div ng-controller="HelloCtrl">
+<h1>Hello, {{getName()}}!</h1>
+</div>
+
+
+
+<div class="container" ng-controller="TextAreaWithLimitCtrl">
+<div class="row">
+<span ng-class="{'text-warning' : shouldWarn()}">
+Remaining: {{remaining()}}
+</span>
+<textarea ng-model="message">{{message}}</textarea>
+</div>
+<div class="row">
+<button ng-disabled="shouldWarn()" ng-click="send()">Send</button>
+<button ng-click="clear()">Clear</button>
+</div>
+</div>
+
+      <script type="text/javascript">
+        var MAX_LEN=70;
+          function TextAreaWithLimitCtrl($scope){
+            $scope.message="",
+            $scope.shouldWarn = function () {
+              return $scope.remaining() < MAX_LEN;
+            }, 
+            $scope.send=function(){
+              alert(123);
+            },
+            $scope.remaining = function () {
+              return MAX_LEN - $scope.message.length;
+            };  
+          }
+
+
+        var HelloCtrl = function ($scope) {
+            $scope.getName = function() {
+              return 123;
+            };
+        }
+
+        function PhoneListCtrl($scope) {
+          $scope.phones = [
+            {"name": "Nexus S",
+             "snippet": "Fast just got faster with Nexus S."},
+            {"name": "Motorola XOOM™ with Wi-Fi",
+             "snippet": "The Next, Next Generation tablet."},
+            {"name": "MOTOROLA XOOM™",
+             "snippet": "The Next, Next Generation tablet."}
+          ];
+        }
+    </script>
+    </body>
+  
+</html>

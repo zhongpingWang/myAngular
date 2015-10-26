@@ -1,0 +1,26 @@
+{
+  "name": "task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zp",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-server": "^0.1.0"
+  },
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-server": "^0.1.0"
+  },
+  "description": ""
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="rootController">
+<head>
+	<title>angular test</title> 
+  <link rel="stylesheet" href="./css/app.css" />
+  <link rel="stylesheet" href="./css/css/bootstrap.css" />
+</head>
+<body>
+
+
+<!-- <div class="container">
+  <div ng-include="'./test/test.html'"></div> 
+</div> -->
+
+<!-- <div ng-controller="testControl"> 
+<input type="text" ng-model="name" placeholder="World"> 
+<span>{{ name }}</span>  <div ng-bind="name"></div> 
+</div> -->
+
+<div id="webSite">
+	<div id="navBar" ng-controller="navBarController">
+
+
+		<expander2 class='expander' action="click()" expander-title='title'>
+                
+        </expander2>
+	 
+
+		<accordion>
+            <expander class='expander' ng-repeat='expander in expanders' expander-title='expander.title'>
+                {{expander.text}}
+            </expander>
+        </accordion> 
+	 
+
+		<div class="searchGame">
+			<input type="text" class="txtSearch" ng-keypress="navBar.add($event)" placeholder="回车添加" /> 
+		</div>
+		<ul class="navContent">
+			<li ng-click="navBar.navClick(1)" ng-class="{select:navBar.select(1)}">LOL</li>
+			<li ng-click="navBar.navClick(2)" ng-class="{select:navBar.select(2)}" >DATA</li>
+			<li ng-click="navBar.navClick(3)" ng-class="{select:navBar.select(3)}" >大话西游</li>
+			<li ng-click="navBar.navClick(4)" ng-class="{select:navBar.select(4)}" >梦话西游</li>
+			<li ng-click="navBar.navClick(5)" ng-class="{select:navBar.select(5)}">倩女幽魂</li>
+		  	<li ng-click="navBar.navClick(6)" ng-class="{select:navBar.select(6)}">天书</li>
+		</ul>
+	</div>
+
+
+	<div id="content">  
+
+		<form class="form-horizontal" role="form" id="custom_form" name="custom_form" novalidate>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">多个email</label>
+
+                <div class="col-sm-10">
+                    <input multiple-email name="user_email" ng-model="user.email" required class="form-control" placeholder="自定义验证，多个邮箱地址，以“；”或者“;”分割" />
+                    验证通过：{{custom_form.user_email.$valid}}
+                </div>
+            </div>
+            <div class="form-group  text-center">
+                <input class="btn btn-primary btn-lg" ng-disabled="custom_form.$invalid" type="submit" value="提交" />
+            </div>
+        </form>
+	
+		<div class="col-md-6">
+            <form role="form" name="myForm" ng-submit="submitForm(myForm.$valid)" class="form-horizontal" novalidate>
+                <div class="form-group  has-feedback">
+                    <div class="col-md-4">
+                        <label for="name">1.必填项</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" id="name" name="name" type="text" required ng-model='name' />
+                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="myForm.name.$dirty && myForm.name.$valid"></span>
+                    </div>
+                </div> 
+               
+                <div class="form-group  text-center">
+                    <input class="btn btn-primary btn-lg" ng-disabled="myForm.$invalid" type="submit" value="提交" />
+                </div>
+            </form>    
+            <div class="col-md-12">
+	            1.必填项:{{user.name}}&nbsp;&nbsp;
+	            $pristine 【没修改】：{{myForm.name.$pristine }}&nbsp;&nbsp;
+	            $dirty【修改过】：{{myForm.name.$dirty}}&nbsp;&nbsp;
+	            $invalid【验证失败】：{{myForm.name.$invalid}}&nbsp;&nbsp;
+	            $invalid【验证成功】：{{myForm.name.$valid}}&nbsp;&nbsp;
+	            required：{{myForm.name.$error.required}}&nbsp;&nbsp; 
+        	</div>  
+        </div>
+
+        <form name="userForm">
+			  <div class="field">
+			    <label for="emailAddress">Enter your email address:</label>
+			    <input type="email" name="emailAddress" ng-model="data.email" required />
+
+			    <!-- this stuff is WAY too complex -->
+			    <div ng-if="userForm.emailAddress.$error.required" class="error">
+			      You forgot to enter your email address...
+			    </div>
+			    <div ng-if="!userForm.emailAddress.$error.required &&
+			                 userForm.emailAddress.$error.email" class="error">
+			      You did not enter your email address correctly...
+			    </div>
+
+			  </div>
+
+			  <input type="submit" />
+		</form>
+
+			<form name="myForm2" novalidate>
+			  <label>
+			    Enter text:
+			    <input type="text" ng-model="field" name="myField" required minlength="5" />
+			  </label>
+			  <div ng-messages="myForm2.myField.$error" class="error-messages" role="alert">
+			    <div ng-message="required">You did not enter a field</div>
+			    <div ng-message="minlength, maxlength">
+			      Your email must be between 5 and 100 characters long----------
+			    </div>
+			  </div>
+			</form>
+		      
+
+	 <hello id="say"></hello>
+	  <hello>
+            <br/>
+            <span>原始的内容，</span><br/>
+            <span>还会在这里。</span>
+        </hello>
+
+        <input type="search" ng-model="q" placeholder="filter friends..." />
+
+
+		<div class="view-container view-animate-container">
+    		<div ng-view class="view-frame view-animate"></div>
+  		</div>
+	</div> 
+</div> 
+
+<script type="text/javascript" src="./angular/angular.js"></script>
+<script type="text/javascript" src="./angular/angular-animate.js"></script>
+<script type="text/javascript" src="./angular/angular-resource.js"></script>
+<script type="text/javascript" src="./angular/angular-route.js"></script>
+<script type="text/javascript" src="./angular/angular-messages.min.js"></script>
+<script type="text/javascript" src="./angular/jquery.js"></script>
+
+<script type="text/javascript" src="./js/app.js"></script>
+</body> 
+</html>
